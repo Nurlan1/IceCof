@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Project.Models.credit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_of_issue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.redeemed)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_of_issue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.redeemed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

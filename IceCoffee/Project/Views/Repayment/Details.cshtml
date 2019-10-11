@@ -1,0 +1,66 @@
+﻿@model Project.Models.Repayment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Repayment</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sum_All)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sum_All)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_sum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment_sum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.credit.bank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.credit.bank)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

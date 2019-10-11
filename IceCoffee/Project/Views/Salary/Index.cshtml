@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Project.Models.salary>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.summm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.premium)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_making)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_buying)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_selling)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.worker1.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.month1.month1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.year1.year1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.summm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.premium)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count_making)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count_buying)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count_selling)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.worker1.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.month1.month1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.year1.year1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

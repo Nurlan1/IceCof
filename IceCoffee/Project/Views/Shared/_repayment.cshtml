@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Project.Models.Repayment>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.payment_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sum_All)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payment_sum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percents)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.credit.bank)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sum_All)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment_sum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percents)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.credit.bank)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

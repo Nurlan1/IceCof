@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ConfectioneryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="budjet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="budjet" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="proc_cost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="prem_proc" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="buying">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="raw" Type="int" />
+    <Property Name="count" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="worker" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="sum" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="consist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product" Type="int" Nullable="false" />
+    <Property Name="raw" Type="int" />
+    <Property Name="count" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="credits">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bank" Type="nvarchar" MaxLength="50" />
+    <Property Name="date_of_issue" Type="date" />
+    <Property Name="fine" Type="real" />
+    <Property Name="percent" Type="real" />
+    <Property Name="sum" Type="real" />
+    <Property Name="year" Type="int" />
+    <Property Name="redeemed" Type="real" />
+  </EntityType>
+  <EntityType Name="making">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product" Type="int" />
+    <Property Name="count" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="worker" Type="int" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <EntityType Name="months">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="month" Type="nchar" MaxLength="13" />
+  </EntityType>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="post" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product" Type="nvarchar" MaxLength="400" />
+    <Property Name="unit" Type="int" />
+    <Property Name="count" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="cost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="sum" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="raw">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="raw" Type="nvarchar" MaxLength="500" />
+    <Property Name="unit" Type="int" />
+    <Property Name="count" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="cost" Type="money" />
+    <Property Name="sum" Type="money" />
+  </EntityType>
+  <EntityType Name="Repayment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bank" Type="int" />
+    <Property Name="payment_date" Type="date" />
+    <Property Name="sum_All" Type="real" />
+    <Property Name="payment_sum" Type="real" />
+    <Property Name="percents" Type="real" />
+    <Property Name="fine" Type="real" />
+  </EntityType>
+  <EntityType Name="salary">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="worker" Type="int" />
+    <Property Name="month" Type="tinyint" />
+    <Property Name="year" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="summm" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="premium" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="count_making" Type="bigint" />
+    <Property Name="payment" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="count_buying" Type="bigint" />
+    <Property Name="count_selling" Type="bigint" />
+    <Property Name="count" Type="bigint" />
+  </EntityType>
+  <EntityType Name="selling">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product" Type="int" />
+    <Property Name="count" Type="float" />
+    <Property Name="worker" Type="int" />
+    <Property Name="date" Type="date" />
+    <Property Name="sum" Type="money" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="unit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="worker">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="250" />
+    <Property Name="post" Type="int" />
+    <Property Name="address" Type="nvarchar" MaxLength="1000" />
+    <Property Name="phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="salary" Type="money" />
+    <Property Name="login" Type="nvarchar" MaxLength="150" />
+    <Property Name="password" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="years">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="year" Type="nchar" MaxLength="4" />
+  </EntityType>
+  <Association Name="FK_buying_raw">
+    <End Role="raw" Type="Self.raw" Multiplicity="0..1" />
+    <End Role="buying" Type="Self.buying" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="buying">
+        <PropertyRef Name="raw" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buying_worker">
+    <End Role="worker" Type="Self.worker" Multiplicity="0..1" />
+    <End Role="buying" Type="Self.buying" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="worker">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="buying">
+        <PropertyRef Name="worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consist_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="consist" Type="Self.consist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consist">
+        <PropertyRef Name="product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_consist_raw">
+    <End Role="raw" Type="Self.raw" Multiplicity="0..1" />
+    <End Role="consist" Type="Self.consist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="raw">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consist">
+        <PropertyRef Name="raw" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_making_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="making" Type="Self.making" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="making">
+        <PropertyRef Name="product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_making_worker">
+    <End Role="worker" Type="Self.worker" Multiplicity="0..1" />
+    <End Role="making" Type="Self.making" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="worker">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="making">
+        <PropertyRef Name="worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_unit">
+    <End Role="unit" Type="Self.unit" Multiplicity="0..1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unit">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_raw_unit">
+    <End Role="unit" Type="Self.unit" Multiplicity="0..1" />
+    <End Role="raw" Type="Self.raw" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="unit">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="raw">
+        <PropertyRef Name="unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Repayment_credits">
+    <End Role="credits" Type="Self.credits" Multiplicity="0..1" />
+    <End Role="Repayment" Type="Self.Repayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="credits">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Repayment">
+        <PropertyRef Name="bank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_selling_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="selling" Type="Self.selling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="selling">
+        <PropertyRef Name="product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_selling_worker">
+    <End Role="worker" Type="Self.worker" Multiplicity="0..1" />
+    <End Role="selling" Type="Self.selling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="worker">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="selling">
+        <PropertyRef Name="worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_worker_post">
+    <End Role="post" Type="Self.post" Multiplicity="0..1" />
+    <End Role="worker" Type="Self.worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="post">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="worker">
+        <PropertyRef Name="post" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ConfectioneryModelContainer">
+    <EntitySet Name="budjet" EntityType="Self.budjet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="buying" EntityType="Self.buying" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="consist" EntityType="Self.consist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="credits" EntityType="Self.credits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="making" EntityType="Self.making" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="months" EntityType="Self.months" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="post" EntityType="Self.post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="raw" EntityType="Self.raw" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Repayment" EntityType="Self.Repayment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="salary" EntityType="Self.salary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="selling" EntityType="Self.selling" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="unit" EntityType="Self.unit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="worker" EntityType="Self.worker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="years" EntityType="Self.years" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_buying_raw" Association="Self.FK_buying_raw">
+      <End Role="raw" EntitySet="raw" />
+      <End Role="buying" EntitySet="buying" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buying_worker" Association="Self.FK_buying_worker">
+      <End Role="worker" EntitySet="worker" />
+      <End Role="buying" EntitySet="buying" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consist_product" Association="Self.FK_consist_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="consist" EntitySet="consist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_consist_raw" Association="Self.FK_consist_raw">
+      <End Role="raw" EntitySet="raw" />
+      <End Role="consist" EntitySet="consist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_making_product" Association="Self.FK_making_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="making" EntitySet="making" />
+    </AssociationSet>
+    <AssociationSet Name="FK_making_worker" Association="Self.FK_making_worker">
+      <End Role="worker" EntitySet="worker" />
+      <End Role="making" EntitySet="making" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_unit" Association="Self.FK_product_unit">
+      <End Role="unit" EntitySet="unit" />
+      <End Role="product" EntitySet="product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_raw_unit" Association="Self.FK_raw_unit">
+      <End Role="unit" EntitySet="unit" />
+      <End Role="raw" EntitySet="raw" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Repayment_credits" Association="Self.FK_Repayment_credits">
+      <End Role="credits" EntitySet="credits" />
+      <End Role="Repayment" EntitySet="Repayment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_selling_product" Association="Self.FK_selling_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="selling" EntitySet="selling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_selling_worker" Association="Self.FK_selling_worker">
+      <End Role="worker" EntitySet="worker" />
+      <End Role="selling" EntitySet="selling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_worker_post" Association="Self.FK_worker_post">
+      <End Role="post" EntitySet="post" />
+      <End Role="worker" EntitySet="worker" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

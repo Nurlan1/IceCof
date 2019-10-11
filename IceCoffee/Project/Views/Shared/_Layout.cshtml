@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+</head>
+<body>
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        if (HttpContext.Current.User.IsInRole("Director"))
+        {
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Учёт производства", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Продукт</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Единицы измерения", "Index", "Unit")</li>
+                            <li>@Html.ActionLink("Продукт", "Index", "Product")</li>
+                            <li>@Html.ActionLink("Продажа", "Index", "Selling")</li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Производство</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Покупка сырья", "Index", "Buying")</li>
+                            <li>@Html.ActionLink("Изготовление", "Index", "Making")</li>
+                            <li>@Html.ActionLink("Сырьё", "Index", "Raw")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Финансы</a>
+                        <ul class="dropdown-menu">
+                            <li >@Html.ActionLink("Бюджет", "Index", "Budget")</li>
+                            <li>@Html.ActionLink("Кредиты", "Index", "Credit")</li>
+                            <li>@Html.ActionLink("Погашение кредита", "Index", "Repayment/Create")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Сотрудники</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Работники", "Index", "Worker")</li>
+                            <li>@Html.ActionLink("Позиция", "Index", "Post")</li>
+                            <li>@Html.ActionLink("Выдача зарплаты", "Index", "Salary")</li>
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                </ul>
+              
+            
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+}
+if (HttpContext.Current.User.IsInRole("Manager"))
+        {
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Учёт производства", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Продукт</a>
+                        <ul class="dropdown-menu">
+                    
+                            <li>@Html.ActionLink("Продажа", "Index", "Selling")</li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Производство</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Покупка сырья", "Index", "Buying")</li>
+                           
+                        </ul>
+                    </li>
+                                  
+                    
+                    
+                </ul>
+              
+            
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+        }
+if (HttpContext.Current.User.IsInRole("Accountant"))
+        {
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Учёт производства", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Финансы</a>
+                        <ul class="dropdown-menu">
+                            <li >@Html.ActionLink("Бюджет", "Index", "Budget")</li>
+                            <li>@Html.ActionLink("Кредиты", "Index", "Credit")</li>
+                            <li>@Html.ActionLink("Погашение кредита", "Index", "Repayment/Create")</li>
+                            <li>@Html.ActionLink("Выдача зарплаты", "Index", "Salary")</li>
+                        </ul>
+                    </li>
+                </ul>
+              
+            
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+}
+if (HttpContext.Current.User.IsInRole("Tech"))
+        {
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Учёт производства", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Продукт</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Единицы измерения", "Index", "Unit")</li>
+                            <li>@Html.ActionLink("Ингридиенты", "Index", "Consist")</li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Производство</a>
+                        <ul class="dropdown-menu">
+                            
+                            <li>@Html.ActionLink("Изготовление", "Index", "Making")</li>
+                            <li>@Html.ActionLink("Сырьё", "Index", "Raw")</li>
+                        </ul>
+                    </li>
+                    
+                   
+                    
+                    
+                    
+                </ul>
+              
+            
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+}
+if (HttpContext.Current.User.IsInRole("HR"))
+        {
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Учёт производства", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                  
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Сотрудники</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Работники", "Index", "Worker")</li>
+                            <li>@Html.ActionLink("Позиция", "Index", "Post")</li>
+                        </ul>
+                    </li>
+                    
+                    
+                    
+                </ul>
+              
+            
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+}
+}
+
+ 
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

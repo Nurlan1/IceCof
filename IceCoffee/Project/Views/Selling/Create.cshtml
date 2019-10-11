@@ -1,0 +1,77 @@
+﻿@model Project.Models.selling
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Продажа</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.product, "product", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("product", String.Empty)
+                @Html.ValidationMessageFor(model => model.product)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.count, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.count)
+                @Html.ValidationMessageFor(model => model.count)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.worker, "worker", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("worker", String.Empty)
+                @Html.ValidationMessageFor(model => model.worker)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sum, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sum)
+                @Html.ValidationMessageFor(model => model.sum)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+@section Scripts {
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>$(function () { $(".datepicker").datepicker(); })</script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
