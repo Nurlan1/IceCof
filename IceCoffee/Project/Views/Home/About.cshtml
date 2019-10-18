@@ -1,7 +1,14 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Ошибка";
+    Layout = "";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@Styles.Render("~/Content/css")
 
-<p>Use this area to provide additional information.</p>
+
+<h2>@ViewBag.Title.</h2>
+<h3>У вас нет прав </h3>
+
+<p>Поменяйте роль или зайдите под другим пользователем.</p>
+
+<a class="btn btn-default" href="/account/Login"> &nbsp;&nbsp;В начало&nbsp;&nbsp; </a><br>
+

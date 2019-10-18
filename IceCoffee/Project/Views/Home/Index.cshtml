@@ -2,18 +2,36 @@
     ViewBag.Title = "Home Page";
 }
 
-<h1>Ice Coffee</h1>
 
 <h1>Добро пожаловать на главную страницу</h1>
-
+@if (HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    if (HttpContext.Current.User.IsInRole("Manager")) { 
 <div class="jumbotron" style="background-image: url(~/Content/tenor.gif)">
     
     
     <img src="~/Content/tenor.gif" class="img-responsive" style="float:right; background-repeat:repeat-y;"/>
     
+    
+    
+    <a class="btn btn-default" href="/Buying"> &nbsp;&nbsp;Покупка сырья&nbsp;&nbsp; </a><br>
+    <a class="btn btn-default" href="/Selling"> &nbsp;&nbsp;Продажа&nbsp;&nbsp;</a><br>
+    
+
+</div>
+
+}
+if (HttpContext.Current.User.IsInRole("Director")) { 
+<div class="jumbotron" style="background-image: url(~/Content/tenor.gif)">
+    
+    
+    <img src="~/Content/tenor.gif" class="img-responsive" style="float:right; background-repeat:repeat-y;"/>
+    
+    
+    <a class="btn btn-default" href="/Making"> &nbsp;&nbsp;Изготовление&nbsp;&nbsp; </a><br>
+    
     <a class="btn btn-default" href="/Buying"> &nbsp;&nbsp;Покупка сырья&nbsp;&nbsp; </a><br>
     <a class="btn btn-default" href="/Consist"> &nbsp;&nbsp;Ингридиенты&nbsp;&nbsp; </a><br>
-    <a class="btn btn-default" href="/Making"> &nbsp;&nbsp;Изготовление&nbsp;&nbsp; </a><br>
     <a class="btn btn-default" href="/Product"> &nbsp;&nbsp;Продукт&nbsp;&nbsp; </a><br>
     <a class="btn btn-default" href="/Raw"> &nbsp;&nbsp;Сырьё&nbsp;&nbsp; </a><br>
     <a class="btn btn-default" href="/Selling"> &nbsp;&nbsp;Продажа&nbsp;&nbsp;</a><br>
@@ -21,3 +39,5 @@
 
 </div>
 
+}
+}
