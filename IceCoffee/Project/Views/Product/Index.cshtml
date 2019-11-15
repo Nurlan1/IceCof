@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<Project.Models.product>
-
+@using Newtonsoft.Json;
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Новая продукция</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Изготовление", "Create")
 </p>
-<table class="table">
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.product1)
@@ -47,11 +48,100 @@
             @Html.DisplayFor(modelItem => item.unit1.unit1)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Редактирование", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Удаление", "Delete", new { id=item.id })
         </td>
     </tr>
 }
 
-</table>
+</table>*@
+
+
+<div id="grid">
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model.Select(x=> new
+              {
+                 // x.id,
+                  xP = x.product1,
+                  x.count,
+                  x.cost,
+                  x.sum,
+                  xU = x.unit1.unit1
+
+              }
+             )));
+        var source =
+            {
+                localdata: data,
+                datatype: "local",
+                datafields: [
+                    { name: 'id', type: 'int' },
+                    { name: 'xP', type: 'string' },
+                    { name: 'count', type: 'float' },
+                    { name: 'cost', type: 'float' },
+                    { name: 'sum', type: 'float' },
+                    { name: 'xU', type: 'int' }
+
+                ],
+                //url: "/PersonCitizenship/h"
+                root: "product",
+                record: "products",
+                id: 'id'
+            };
+        var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+            if (value < 20) {
+                return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+            }
+            else {
+                return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+            }
+        }
+        var dataAdapter = new $.jqx.dataAdapter(source, {
+            downloadComplete: function (data, status, xhr) { },
+            loadComplete: function (data) { },
+            loadError: function (xhr, status, error) { }
+        });
+        $("#grid").jqxGrid(
+            {
+                width: getWidth('Grid'),
+                source: dataAdapter,
+                pageable: true,
+                autoheight: true,
+                sortable: true,
+                altrows: true,
+                showfilterrow: true,
+                filterable: true,
+                enabletooltips: true,
+                editable: true,
+                selectionmode: 'multiplecellsadvanced',
+                columns: [
+                  //{ text: 'Id', columngroup: 'Countries', datafield: 'Id', width: 250 },
+                  { text: 'Продукт', columngroup: 'Countries',datafield: 'xP', cellsalign: 'right', align: 'right', width: 250 },
+                  { text: 'Количество', columngroup: 'Countries',datafield: 'count', align: 'right', cellsalign: 'right', cellsformat: 'c2', width: 150 },
+                  { text: 'Стоимость', columngroup: 'Countries',datafield: 'cost', cellsalign: 'right', align: 'right', width: 150 },
+                  { text: 'Сумма', columngroup: 'Countries',datafield: 'sum', cellsalign: 'right', align: 'right', width: 150 },
+                  { text: 'Ед.изм', columngroup: 'Countries',datafield: 'xU', cellsalign: 'right', align: 'right', width: 150 },
+                ],
+                columngroups: [
+                    { text: 'Продукты на складе', align: 'center', name: 'Countries' }
+                ]
+            });
+        $("#grid").on("rowdoubleclick", function (event)
+        {
+            //location.replace("/PersonCitizenships/Index.html")
+
+            //window.location.href
+            var idn = event.args.row.bounddata.id;
+            var url = "/Product/Edit?id=" + idn;
+           window.location.replace(url);
+
+
+            });
+        });
+
+</script>
