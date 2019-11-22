@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Project.Models.budjet>
+@using Newtonsoft.Json;
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +10,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.budjet1)
@@ -42,4 +44,88 @@
     </tr>
 }
 
-</table>
+</table>*@
+
+<div id="grid">
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model.Select(x=> new
+              {
+                 // x.id,
+                 xB = x.budjet1,
+                 xP = x.prem_proc,
+                 xC = x.proc_cost
+
+              }
+             )));
+        var source =
+            {
+                localdata: data,
+                datatype: "local",
+                datafields: [
+                    { name: 'xB', type: 'float' },
+                    { name: 'xP', type: 'float' },
+                    { name: 'xC', type: 'float' }
+
+                ],
+                //url: "/PersonCitizenship/h"
+                root: "budjet",
+                record: "budjet",
+                id: 'id'
+            };
+        var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+            if (value < 20) {
+                return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+            }
+            else {
+                return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+            }
+        }
+        var dataAdapter = new $.jqx.dataAdapter(source, {
+            downloadComplete: function (data, status, xhr) { },
+            loadComplete: function (data) { },
+            loadError: function (xhr, status, error) { }
+        });
+        $("#grid").jqxGrid(
+            {
+                width: getWidth('Grid'),
+                source: dataAdapter,
+                pageable: true,
+                autoheight: true,
+                sortable: true,
+                altrows: true,
+                showfilterrow: true,
+                filterable: true,
+                enabletooltips: true,
+                editable: true,
+                selectionmode: 'multiplecellsadvanced',
+                columns: [
+                  //{ text: 'Id', columngroup: 'Countries', datafield: 'Id', width: 250 },
+                  { text: 'Бюджет', columngroup: 'Countries',datafield: 'xB', cellsalign: 'right', align: 'right', width: 300 },
+                  { text: 'Процент стоимости', columngroup: 'Countries',datafield: 'xP', align: 'right', cellsalign: 'right', cellsformat: 'c2', width: 300 },
+                  { text: 'Процент бонусов', columngroup: 'Countries',datafield: 'xC', cellsalign: 'right', align: 'right', width: 250 }
+                ],
+                columngroups: [
+                    { text: 'Ведение бюджета', align: 'center', name: 'Countries' }
+                ]
+            });
+        $("#grid").on("rowdoubleclick", function (event)
+        {
+            //location.replace("/PersonCitizenships/Index.html")
+
+            //window.location.href
+            //var idn = event.args.row.bounddata.id;
+            var url = "/Budget/Edit/" + 1;
+           window.location.replace(url);
+
+
+            });
+        });
+
+</script>
+
+
