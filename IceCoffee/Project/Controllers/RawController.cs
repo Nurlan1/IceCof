@@ -53,6 +53,9 @@ namespace Project.Controllers
         {
             if (ModelState.IsValid)
             {
+                raw.cost = 0;
+                raw.count = 0;
+                raw.sum = 0;
                 db.raws.Add(raw);
                 db.SaveChanges();
                 return RedirectToAction("Index");

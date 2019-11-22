@@ -76,7 +76,7 @@
                 datafields: [
                     { name: 'id', type: 'int' },
                     { name: 'xP', type: 'string' },
-                    { name: 'count', type: 'float' },
+                    { name: 'count', type: 'int' },
                     { name: 'xW', type: 'string' }
                     //{ name: 'date', type: 'date' }
                 ],
@@ -114,7 +114,7 @@
                 columns: [
                   //{ text: 'Id', columngroup: 'Countries', datafield: 'Id', width: 250 },
                   { text: 'Продукт', columngroup: 'Countries',datafield: 'xP', cellsalign: 'right', align: 'right', width: 300 },
-                  { text: 'Количество', columngroup: 'Countries',datafield: 'count', align: 'right', cellsalign: 'right', cellsformat: 'c2', width: 270 },
+                  { text: 'Количество', columngroup: 'Countries',datafield: 'count', align: 'right', cellsalign: 'right',  width: 270 },
                   { text: 'Сотрудник', columngroup: 'Countries',datafield: 'xW', cellsalign: 'right', align: 'right', width: 280 }
                   //{ text: 'Дата', columngroup: 'Countries',datafield: 'date', cellsalign: 'right', align: 'right', width: 200 }
                 ],
@@ -130,8 +130,6 @@
             var idn = event.args.row.bounddata.id;
             var url = "/Making/Edit?id=" + idn;
            window.location.replace(url);
-
-
             });
         });
 
