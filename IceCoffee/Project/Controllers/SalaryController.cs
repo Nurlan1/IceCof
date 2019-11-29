@@ -7,11 +7,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Project.Models;
-
+using System.Data.SqlClient;
+using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 namespace Project.Controllers
+
 {
+    
     public class SalaryController : Controller
     {
+        
         private ConfectioneryEntities db = new ConfectioneryEntities();
 
         // GET: /Salary/
@@ -66,8 +71,23 @@ namespace Project.Controllers
                 ViewBag.year = new SelectList(db.years, "id", "year1", salary.year);
                 return View(salary);
             }
-            catch {
-                Response.Write("<script>alert('Ошибка! Не хватает бюджета или повторная выплата!');</script>");
+            catch (Exception e)
+            {
+                if (e.GetBaseException().Message.ToString().StartsWith("Cannot insert duplicate key"))
+                {
+                    Response.Write("<script>alert('Ошибка! Невозможно повторная выплата!');</script>");
+                }
+                else {
+
+                    Response.Write("<script>alert('Ошибка!" + e.GetBaseException().Message.ToString().Split('\n')[0].Remove(30) + "');</script>");
+                }
+               
+                
+                
+                    
+                    
+                    
+                
             }
             ViewBag.worker = new SelectList(db.workers, "id", "name", salary.worker);
             ViewBag.month = new SelectList(db.months, "id", "month1", salary.month);

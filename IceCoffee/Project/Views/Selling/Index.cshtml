@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Project.Models.selling>
+@using Newtonsoft.Json;
 
 @{
     ViewBag.Title = "Index";
@@ -7,9 +8,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Дабавить", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.count)
@@ -54,4 +55,101 @@
     </tr>
 }
 
-</table>
+</table>*@
+
+<div id="grid">
+    </div>
+
+
+    <script>
+
+            $(document).ready(function () {
+                var data = @Html.Raw(JsonConvert.SerializeObject(Model.Select(x=> new
+                      {
+                          x.id,
+                          x.count,
+                         // x.post1.post1,
+                          x.date,
+                          x.sum,
+                          xP = x.product1.product1,
+                          xN = x.worker1.name
+                      }
+                     )));
+                var source =
+                    {
+                        localdata: data,
+                        datatype: "local",
+                        datafields: [
+                             { name: 'id', type: 'int' },
+                            { name: 'count', type: 'int' },
+                           // { name: 'x.post1.post1', type: 'int' },
+                            { name: 'date', type: 'date' },
+                            { name: 'sum', type: 'float' },
+                            { name: 'xP', type: 'string' },
+                            { name: 'xN', type: 'string' }
+
+                        ],
+                        //url: "/PersonCitizenship/h"
+                        root: "selling",
+                        record: "Sellings",
+                        id: 'id'
+                    };
+                var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+                    if (value < 20) {
+                        return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+                    }
+                    else {
+                        return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+                    }
+                }
+                var dataAdapter = new $.jqx.dataAdapter(source, {
+                    downloadComplete: function (data, status, xhr) { },
+                    loadComplete: function (data) { },
+                    loadError: function (xhr, status, error) { }
+                });
+
+                $("#grid").jqxGrid(
+                    {
+                        width: getWidth('Grid'),
+                        source: dataAdapter,
+                        pageable: true,
+                        autoheight: true,
+                        sortable: true,
+                        altrows: true,
+                        showfilterrow: true,
+                        filterable: true,
+                        enabletooltips: true,
+                        editable: true,
+                        selectionmode: 'multiplecellsadvanced',
+                    //{ name: 'count', type: 'int' },
+                    //       // { name: 'x.post1.post1', type: 'int' },
+                    //        { name: 'date', type: 'date' },
+                    //        { name: 'sum', type: 'float' },
+                    //        { name: 'product1', type: 'string' },
+                    //        { name: 'xN', type: 'string' }
+                        columns: [
+                          //{ text: 'Id', columngroup: 'Countries', datafield: 'Id', width: 250 },
+                          { text: 'Продукция', columngroup: 'Countries',datafield: 'xP', cellsalign: 'right', align: 'right', width: 250 },
+                          { text: 'Количество', columngroup: 'Countries',datafield: 'count', align: 'right', cellsalign: 'right', width: 100 },
+                          { text: 'Сумма', columngroup: 'Countries',datafield: 'sum', cellsalign: 'right', align: 'right', width: 100 },
+                          { text: 'Дата', columngroup: 'Countries',datafield: 'date', cellsformat: 'dd.MM.yyyy', cellsalign: 'right', align: 'right', width: 200 },
+                          { text: 'Сотрудник', columngroup: 'Countries',datafield: 'xN', cellsalign: 'right', align: 'right', width: 200 }
+                        ],
+                        columngroups: [
+                            { text: 'Учет продаж', align: 'center', name: 'Countries' }
+                        ]
+                    });
+                $("#grid").on("rowdoubleclick", function (event)
+                {
+                    //location.replace("/PersonCitizenships/Index.html")
+
+                    //window.location.href
+                    var idn = event.args.row.bounddata.id;
+                    var url = "/Selling/Edit/" + idn;
+                   window.location.replace(url);
+
+
+                    });
+                });
+
+    </script>

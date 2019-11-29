@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<Project.Models.worker>
+@using Newtonsoft.Json;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Сотрудники";
 }
 
 <h2>Сотрудники</h2>
@@ -68,3 +69,94 @@
 }
 
 </table>*@
+
+<div id="grid">
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+            var data = @Html.Raw(JsonConvert.SerializeObject(Model.Select(x=> new
+                  {
+                      x.id,
+                      x.name,
+                     // x.post1.post1,
+                      x.address,
+                      x.phone,
+                      x.salary,
+                  }
+                 )));
+            var source =
+                {
+                    localdata: data,
+                    datatype: "local",
+                    datafields: [
+                         { name: 'id', type: 'int' },
+                        { name: 'name', type: 'string' },
+                       // { name: 'x.post1.post1', type: 'int' },
+                        { name: 'address', type: 'string' },
+                        { name: 'phone', type: 'string' },
+                        { name: 'salary', type: 'float' }
+                       // { name: 'xU', type: 'string' }
+
+                    ],
+                    //url: "/PersonCitizenship/h"
+                    root: "worker",
+                    record: "workers",
+                    id: 'id'
+                };
+            var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties, rowdata) {
+                if (value < 20) {
+                    return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #ff0000;">' + value + '</span>';
+                }
+                else {
+                    return '<span style="margin: 4px; margin-top:8px; float: ' + columnproperties.cellsalign + '; color: #008000;">' + value + '</span>';
+                }
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source, {
+                downloadComplete: function (data, status, xhr) { },
+                loadComplete: function (data) { },
+                loadError: function (xhr, status, error) { }
+            });
+
+            $("#grid").jqxGrid(
+                {
+                    width: getWidth('Grid'),
+                    source: dataAdapter,
+                    pageable: true,
+                    autoheight: true,
+                    sortable: true,
+                    altrows: true,
+                    showfilterrow: true,
+                    filterable: true,
+                    enabletooltips: true,
+                    editable: true,
+                    selectionmode: 'multiplecellsadvanced',
+                    columns: [
+                      //{ text: 'Id', columngroup: 'Countries', datafield: 'Id', width: 250 },
+                      { text: 'Имя', columngroup: 'Countries',datafield: 'name', cellsalign: 'right', align: 'right', width: 250 },
+                      //{ text: 'Должность', columngroup: 'Countries',datafield: 'x.post1.post1', align: 'right', cellsalign: 'right', width: 200 },
+                      { text: 'Адрес', columngroup: 'Countries',datafield: 'address', cellsalign: 'right', align: 'right', width: 200 },
+                      { text: 'Телефон', columngroup: 'Countries',datafield: 'phone', cellsalign: 'right', align: 'right', width: 200 },
+                      { text: 'Оклад', columngroup: 'Countries',datafield: 'salary', cellsalign: 'right', align: 'right', width: 200 }
+                    ],
+                    columngroups: [
+                        { text: 'Сотрудники', align: 'center', name: 'Countries' }
+                    ]
+                });
+            $("#grid").on("rowdoubleclick", function (event)
+            {
+                //location.replace("/PersonCitizenships/Index.html")
+
+                //window.location.href
+                var idn = event.args.row.bounddata.id;
+                var url = "/Worker/Edit/" + idn;
+               window.location.replace(url);
+
+
+                });
+            });
+
+    </script>
+

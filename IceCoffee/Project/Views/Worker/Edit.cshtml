@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование данных сотрудников</h2>
 
 
 @using (Html.BeginForm())
@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>worker</h4>
+      
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.name, "ФИО", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name)
                 @Html.ValidationMessageFor(model => model.name)
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.post, "post", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.post, "Позиция", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("post", String.Empty)
                 @Html.ValidationMessageFor(model => model.post)
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.address, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.address, "Адрес", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.address)
                 @Html.ValidationMessageFor(model => model.address)
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.phone, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.phone, "Телефон", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.phone)
                 @Html.ValidationMessageFor(model => model.phone)
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.salary, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.salary, "Оклад", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.salary)
                 @Html.ValidationMessageFor(model => model.salary)
@@ -58,7 +58,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.login, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.login, "Логин", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.login)
                 @Html.ValidationMessageFor(model => model.login)
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.password, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.password, "Пароль", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.password)
                 @Html.ValidationMessageFor(model => model.password)
@@ -75,14 +75,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 @section Scripts {

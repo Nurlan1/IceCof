@@ -4,45 +4,45 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Выдача зарплаты</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Выдать зарплату", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            Дата
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.summm)
+            Зарплата
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.premium)
+            Премия
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.count)
+            Кол. участий
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.payment)
+            Получка
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.count_making)
+            Изготов.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.count_buying)
+            Покупка
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.count_selling)
+            Продажа
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.worker1.name)
+            Сотрудник
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.month1.month1)
+            Месяц
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.year1.year1)
+            Год
         </th>
         <th></th>
     </tr>
@@ -83,9 +83,9 @@
             @Html.DisplayFor(modelItem => item.year1.year1)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Редакт.", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Детали", "Details", new { id=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
         </td>
     </tr>
 }
